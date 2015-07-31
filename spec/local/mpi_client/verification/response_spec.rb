@@ -33,6 +33,9 @@ describe "Verification::Response" do
         <Response type="vereq">
             <Transaction id="33557" status="Y">
                 <URL>http://3ds/client/xxx</URL>
+                <MD>123678</MD>
+                <ACSUrl>http://acs.com</ACSUrl>
+                <PaReq>any pa req</PaReq>
             </Transaction>
         </Response>
         XML
@@ -49,6 +52,18 @@ describe "Verification::Response" do
 
     it "should have url" do
       @response.url.should == 'http://3ds/client/xxx'
+    end
+
+    it "should have md" do
+      @response.md.should == '123678'
+    end
+
+    it "should have acs_url" do
+      @response.acs_url.should == 'http://acs.com'
+    end
+
+    it "should have pa_req" do
+      @response.pa_req.should == 'any pa req'
     end
   end
 

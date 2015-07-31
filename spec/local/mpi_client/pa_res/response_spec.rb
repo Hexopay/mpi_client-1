@@ -10,11 +10,12 @@ describe "PaRes::Response" do
       @response.stub!(:xml => <<-XML)
         <?xml version="1.0" encoding="UTF-8"?>
         <Response type="pares">
-            <Transaction id="33557" status="Y">
+            <Transaction id="33557">
                 <ECI>05</ECI>
                 <XID>xid5</XID>
                 <CAVV>cavv3</CAVV>
                 <CAVV_ALGORITHM>1</CAVV_ALGORITHM>
+                <STATUS>Y</STATUS>
                 <SIGNATURE>any signature</SIGNATURE>
             </Transaction>
         </Response>
@@ -24,6 +25,10 @@ describe "PaRes::Response" do
 
     it "should be successful if xml does not contain Error item" do
       @response.should be_successful
+    end
+
+    it "should have eci" do
+      @response.status.should == 'Y'
     end
 
     it "should have eci" do

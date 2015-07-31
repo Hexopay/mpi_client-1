@@ -2,12 +2,7 @@ require 'spec_helper'
 
 describe "PaRes::Request" do
   before(:each) do
-    options = {
-      account_id: '100',
-      md:         '200',
-      pa_res:     'any pa res'
-    }
-
+    options = { md: '200', pa_res: 'any pa res' }
     @request = PaRes::Request.new(options)
   end
 

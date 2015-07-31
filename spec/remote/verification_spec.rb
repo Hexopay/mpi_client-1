@@ -10,8 +10,12 @@ describe 'test of verification request' do
   it "should return 'Y' and url" do
     req = Verification::Request.new(request_params(:card_number => '4200000000000000'), '2')
     response = req.process
+
     response.status.should == 'Y'
     response.url.should_not be_empty
+    response.md.should_not be_empty
+    response.pa_req.should_not be_empty
+    response.acs_url.should_not be_empty
   end
 
   def request_params(new_params)

@@ -13,4 +13,5 @@ module MPIClient
   autoload :BaseRequest,        'mpi_client/base_request'
   autoload :Verification,       'mpi_client/verification'
   autoload :AccountManagement,  'mpi_client/account_management'
+  autoload :PaRes,              'mpi_client/pa_res'
 end

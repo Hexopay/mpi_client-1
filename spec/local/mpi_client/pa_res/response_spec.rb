@@ -1,41 +1,22 @@
 require 'spec_helper'
 
-describe "Verification::Response" do
-  it "should return Response instance" do
-    Verification::Response.parse('').should be_an_instance_of(Verification::Response)
-  end
-
+describe "PaRes::Response" do
   before(:each) do
-    @response = Verification::Response.new('')
-  end
-
-  context 'xml contain sucessful response with status "N"' do
-    before(:each) do
-      @response.stub!(:xml => <<-XML)
-        <?xml version="1.0" encoding="UTF-8"?>
-        <Response type="vereq">
-            <Transaction id="33557" status="N">
-            </Transaction>
-        </Response>
-        XML
-      @response.parse
-    end
-
-    it "should be successful if xml does not contain Error item" do
-      @response.should be_successful
-    end
+    @response = PaRes::Response.new('')
   end
 
   context 'xml contain sucessful response' do
     before(:each) do
       @response.stub!(:xml => <<-XML)
         <?xml version="1.0" encoding="UTF-8"?>
-        <Response type="vereq">
-            <Transaction id="33557" status="Y">
-                <URL>http://3ds/client/xxx</URL>
-                <MD>123678</MD>
-                <ACSUrl>http://acs.com</ACSUrl>
-                <PaReq>any pa req</PaReq>
+        <Response type="pares">
+            <Transaction id="33557">
+                <ECI>05</ECI>
+                <XID>xid5</XID>
+                <CAVV>cavv3</CAVV>
+                <CAVV_ALGORITHM>1</CAVV_ALGORITHM>
+                <STATUS>Y</STATUS>
+                <SIGNATURE>any signature</SIGNATURE>
             </Transaction>
         </Response>
         XML
@@ -46,24 +27,28 @@ describe "Verification::Response" do
       @response.should be_successful
     end
 
-    it "should have 'Y' status" do
+    it "should have eci" do
       @response.status.should == 'Y'
     end
 
-    it "should have url" do
-      @response.url.should == 'http://3ds/client/xxx'
+    it "should have eci" do
+      @response.eci.should == '05'
     end
 
-    it "should have md" do
-      @response.md.should == '123678'
+    it "should have xid" do
+      @response.xid.should == 'xid5'
     end
 
-    it "should have acs_url" do
-      @response.acs_url.should == 'http://acs.com'
+    it "should have cavv" do
+      @response.cavv.should == 'cavv3'
     end
 
-    it "should have pa_req" do
-      @response.pa_req.should == 'any pa req'
+    it "should have cavv_algorithm" do
+      @response.cavv_algorithm.should == '1'
+    end
+
+    it "should have signature" do
+      @response.signature.should == 'any signature'
     end
   end
 
@@ -89,7 +74,7 @@ describe "Verification::Response" do
     before(:each) do
       @response.stub!(:xml => <<-XML)
         <?xml version="1.0" encoding="UTF-8"?>
-        <Response type="create_account">
+        <Response type="pares">
           <Error code="C5">Wrong data</Error>
         </Response>
         XML

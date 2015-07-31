@@ -1,7 +1,7 @@
 module MPIClient
-  module Verification
+  module PaRes
     class Response
-      attr_reader :xml, :error_code, :error_message, :status, :url, :md, :acs_url, :pa_req
+      attr_reader :xml, :error_code, :error_message, :status, :eci, :xid, :cavv, :cavv_algorithm, :signature
 
       def initialize(xml)
         @xml = xml
@@ -15,11 +15,12 @@ module MPIClient
         doc = Nokogiri::XML(xml)
 
         unless (doc.xpath("//Transaction")).empty?
-          @status = doc.xpath("//Transaction").attr('status').value
-          @url    = doc.xpath("//Transaction/URL").text
-          @md     = doc.xpath("//Transaction/MD").text
-          @acs_url= doc.xpath("//Transaction/ACSUrl").text
-          @pa_req = doc.xpath("//Transaction/PaReq").text
+          @status = doc.xpath("//Transaction/STATUS").text
+          @eci  = doc.xpath("//Transaction/ECI").text
+          @xid  = doc.xpath("//Transaction/XID").text
+          @cavv = doc.xpath("//Transaction/CAVV").text
+          @cavv_algorithm = doc.xpath("//Transaction/CAVV_ALGORITHM").text
+          @signature = doc.xpath("//Transaction/SIGNATURE").text
         else
           get_error(doc)
         end

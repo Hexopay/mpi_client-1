@@ -40,6 +40,7 @@ module MPIClient
           @error_message = 'Unknown response was received from MPI'
           @error_code    = ''
         end
+        @status = 'E'
       end
     end
   end

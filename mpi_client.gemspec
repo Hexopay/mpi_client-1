@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name         = 'mpi_client'
-  s.version      = '0.2.0'
-  s.authors      = ['Dmitry Plashchynski', 'Evgeniy Sugakov']
+  s.version      = '0.3.0'
+  s.authors      = ['Dmitry Plashchynski', 'Evgeniy Sugakov', 'Andrei Novikau']
   s.homepage     = 'http://github.com/alovak/mpi_client/'
   s.summary      = 'MPI client library'
-  s.email        = 'alovak@gmail.com'
+  s.email        = 'support@ecomcharge.com'
   s.require_path = "lib"
   s.has_rdoc     = false
   s.files        = Dir.glob("lib/**/*.rb")

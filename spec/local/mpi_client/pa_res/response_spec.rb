@@ -74,7 +74,7 @@ describe "PaRes::Response" do
     before(:each) do
       @response.stub!(:xml => <<-XML)
         <?xml version="1.0" encoding="UTF-8"?>
-        <Response type="pares">
+        <Response type="pares" SIGNATURE="8e49d83eb2dcfd951579a7f4da4fbc262b7cd057">
           <Error code="C5">Wrong data</Error>
         </Response>
         XML
@@ -91,6 +91,14 @@ describe "PaRes::Response" do
 
     it "should contain error code" do
       @response.error_code.should == 'C5'
+    end
+
+    it "should have 'E' status" do
+      @response.status.should == 'E'
+    end
+
+    it "should have signature" do
+      @response.signature.should == '8e49d83eb2dcfd951579a7f4da4fbc262b7cd057'
     end
   end
 end

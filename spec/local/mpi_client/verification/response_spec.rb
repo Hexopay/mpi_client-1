@@ -107,5 +107,9 @@ describe "Verification::Response" do
     it "should contain error code" do
       @response.error_code.should == 'C5'
     end
+    
+    it "should have 'E' status" do
+      @response.status.should == 'E'
+    end
   end
 end

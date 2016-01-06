@@ -41,6 +41,9 @@ module MPIClient
           @error_message = 'Unknown response was received from MPI'
           @error_code    = ''
         end
+
+        @status    = doc.xpath("//Response/@STATUS").empty? ? 'E' : doc.xpath("//Response/@STATUS").text
+        @signature = doc.xpath("//Response/@SIGNATURE").text unless doc.xpath("//Response/@SIGNATURE").empty?
       end
     end
   end

@@ -12,6 +12,7 @@ describe "Verification::Request" do
       :exp_year         => '2016',
       :exp_month        => '02',
       :termination_url  => 'http://term.com',
+      :route            => 'nspk'
     }
 
     @transaction_id = '123456'
@@ -58,7 +59,7 @@ describe "Verification::Request" do
 
     it "should contain mapped options" do
       xml = @request.send(:build_xml)
-      %w(AccountId Amount CardNumber Description DisplayAmount CurrencyCode ExpY ExpM URL).each do |item|
+      %w(AccountId Amount CardNumber Description DisplayAmount CurrencyCode ExpY ExpM URL Route).each do |item|
         xml.should match %r{<#{item}>.+</#{item}>}
       end
     end

@@ -28,7 +28,8 @@ describe 'test of verification request' do
       :currency         => '840',
       :exp_month        => '12',
       :exp_year         => '16',
-      :termination_url  => 'http://50acb15a.ngrok.io'
+      :termination_url  => 'http://50acb15a.ngrok.io',
+      :route            => 'nspk'
     }.update(new_params)
   end
 end

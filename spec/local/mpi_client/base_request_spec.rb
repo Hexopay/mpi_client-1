@@ -25,12 +25,14 @@ describe "BaseRequest" do
     let(:proxy_port) { 3129 }
     let(:proxy_user) { "p_user" }
     let(:proxy_pass) { "p_pass" }
+    let(:open_timeout) { 5 }
 
     before do
       MPIClient.proxy_addr = proxy_addr
       MPIClient.proxy_port = proxy_port
       MPIClient.proxy_user = proxy_user
       MPIClient.proxy_pass = proxy_pass
+      MPIClient.open_timeout = open_timeout
     end
 
     after do
@@ -38,6 +40,7 @@ describe "BaseRequest" do
       MPIClient.proxy_port = nil
       MPIClient.proxy_user = nil
       MPIClient.proxy_pass = nil
+      MPIClient.open_timeout = nil
     end
 
     it "should create connection with proxy" do
@@ -47,6 +50,7 @@ describe "BaseRequest" do
       connection.instance_variable_get(:@proxy_port).should == proxy_port
       connection.instance_variable_get(:@proxy_user).should == proxy_user
       connection.instance_variable_get(:@proxy_pass).should == proxy_pass
+      connection.instance_variable_get(:@open_timeout).should == open_timeout
     end
   end
 

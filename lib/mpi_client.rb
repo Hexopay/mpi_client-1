@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'active_support/core_ext/module/attribute_accessors'
 
 module MPIClient
-  mattr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass
+  mattr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass, :open_timeout
   mattr_accessor :server_url
   mattr_accessor :logger
 

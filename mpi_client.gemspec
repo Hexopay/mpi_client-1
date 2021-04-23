@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = 'mpi_client'
-  s.version      = '0.3.2'
+  s.version      = '0.3.3'
   s.authors      = ['Dmitry Plashchynski', 'Evgeniy Sugakov', 'Andrei Novikau']
   s.homepage     = 'http://github.com/ecomcharge/mpi_client/'
   s.summary      = 'MPI client library'

@@ -11,6 +11,7 @@ module MPIClient
         'ExpY'            => :exp_year,
         'ExpM'            => :exp_month,
         'URL'             => :termination_url,
+        'Route'           => :route
       }
 
       REQUEST_TYPE = 'vereq'

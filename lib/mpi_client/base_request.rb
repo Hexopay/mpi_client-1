@@ -5,11 +5,12 @@ module MPIClient
 
     def initialize
       options = {
-        :proxy_addr => MPIClient.proxy_addr,
-        :proxy_port => MPIClient.proxy_port,
-        :proxy_user => MPIClient.proxy_user,
-        :proxy_pass => MPIClient.proxy_pass,
-        :open_timeout => MPIClient.open_timeout
+        :proxy_addr   => MPIClient.proxy_addr,
+        :proxy_port   => MPIClient.proxy_port,
+        :proxy_user   => MPIClient.proxy_user,
+        :proxy_pass   => MPIClient.proxy_pass,
+        :open_timeout => MPIClient.open_timeout,
+        :read_timeout => MPIClient.read_timeout
       }
 
       @connection = Network::Connection.new(MPIClient.server_url, options)
